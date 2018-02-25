@@ -29,4 +29,17 @@ public class GreetingRouterTest {
                 .expectStatus().isOk()
                 .expectBody(String.class).isEqualTo("Hello, Spring!");
     }
+
+    @Test
+    public void testBob() {
+        webTestClient
+                // Create a GET request to test an endpoint
+                .get().uri("/bob")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                // and use the dedicated DSL to test assertions against the response
+                .expectStatus().isOk()
+                .expectBody(String.class).toString().contains("\"greeting\":\"Greetings!, from Bob\"");
+//                .expectBody(String.class).isEqualTo("{\"greeting\":\"Greetings!, from Bob\",\"today\":\"2018-02-25\"}");
+    }
 }

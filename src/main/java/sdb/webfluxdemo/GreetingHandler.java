@@ -14,4 +14,10 @@ public class GreetingHandler {
         return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
                 .body(BodyInserters.fromObject("Hello, Spring!"));
     }
+
+    public Mono<ServerResponse> callBob(ServerRequest request) {
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromObject(new GreetingBob("Greetings!, from Bob")));
+    }
+
 }
